@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
 
 class StickerBoard extends StatelessWidget {
-
   final List<Widget> children;
+
   StickerBoard({this.children});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-        children: children
-    );
+    return Stack(children: children);
   }
 }
 
 class StickerItem extends StatefulWidget {
+  final double defaultX;
+  final double defaultY;
+  final Widget child;
 
-  double defaultX;
-  double defaultY;
-  Widget child;
-
-  StickerItem({
-    this.defaultX,
-    this.defaultY,
-    @required this.child
-  });
+  StickerItem({this.defaultX, this.defaultY, @required this.child});
 
   @override
-  _StickerItemState createState() => _StickerItemState(defaultX, defaultY, child);
+  _StickerItemState createState() =>
+      _StickerItemState(defaultX, defaultY, child);
 }
 
 class _StickerItemState extends State<StickerItem> {
@@ -36,6 +30,7 @@ class _StickerItemState extends State<StickerItem> {
   double y;
   double width = 100.0;
   double height = 100.0;
+
   _StickerItemState(this.x, this.y, this.child);
 
   @override
@@ -52,11 +47,7 @@ class _StickerItemState extends State<StickerItem> {
               ),
               padding: EdgeInsets.all(10.0),
               child: GestureDetector(
-                child: Container(
-                    width: width,
-                    height: height,
-                    child: child
-                ),
+                child: Container(width: width, height: height, child: child),
                 onPanUpdate: (DragUpdateDetails details) {
                   setState(() {
                     x += details.delta.dx;
@@ -66,23 +57,21 @@ class _StickerItemState extends State<StickerItem> {
               ),
             ),
           ),
-          Positioned(
-            child: Align(
-              alignment: FractionalOffset.bottomRight,
-              child: GestureDetector(
-                  onPanUpdate: (DragUpdateDetails details) {
-                    setState(() {
-                      width += details.delta.dx;
-                      height += details.delta.dx;
-                    });
-                  },
-                  child: Container(height: 10.0, width: 10.0, color: Colors.black,)
-              ),
-            ),
+          Container(
+            height: 10.0,
+            width: 10.0,
+            color: Colors.black,
+            child: GestureDetector(onPanUpdate: (DragUpdateDetails details) {
+              double _width = width + details.delta.dx;
+              double _height = height + details.delta.dx;
+              _width > 10 && _height > 10 ? setState(() {
+                width += details.delta.dx;
+                height += details.delta.dx;
+              }) : setState(() {});
+            }),
           ),
         ],
       ),
-
     );
   }
 }
