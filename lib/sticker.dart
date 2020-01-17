@@ -45,6 +45,7 @@ class _StickerItemState extends State<StickerItem> {
               border: Border.all(color: Colors.blueAccent),
             ),
             padding: EdgeInsets.all(10.0),
+            margin: EdgeInsets.all(5.0),
             child: GestureDetector(
               child: Container(width: width, height: height, child: child),
               onPanUpdate: (DragUpdateDetails details) {
@@ -58,19 +59,23 @@ class _StickerItemState extends State<StickerItem> {
           Positioned.fill(
             child: Align(
               alignment: Alignment.bottomRight,
-              child: Container(
-                height: 10.0,
-                width: 10.0,
-                color: Colors.black,
-                child: GestureDetector(onPanUpdate: (DragUpdateDetails details) {
-                  double _width = width + details.delta.dx;
-                  double _height = height + details.delta.dx;
-                  _width > 10 && _height > 10 ? setState(() {
-                    width += details.delta.dx;
-                    height += details.delta.dx;
-                  }) : setState(() {});
-                }),
-              ),
+              child: GestureDetector(
+                child: ClipOval(
+                  child: Container(
+                    width: 15.0,
+                    height: 15.0,
+                    color: Colors.grey.shade300,
+                    child: Icon(Icons.code, size: 10.0,),
+                  ),
+                ),
+                onPanUpdate: (DragUpdateDetails details) {
+                double _width = width + details.delta.dx;
+                double _height = height + details.delta.dx;
+                _width > 10 && _height > 10 ? setState(() {
+                  width += details.delta.dx;
+                  height += details.delta.dx;
+                }) : setState(() {});
+              },),
             ),
           ),
         ],
