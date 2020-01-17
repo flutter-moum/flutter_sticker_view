@@ -77,6 +77,27 @@ class _StickerItemState extends State<StickerItem> {
                 }) : setState(() {});
               },),
             ),
+          ),Positioned.fill(
+            child: Align(
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                child: ClipOval(
+                  child: Container(
+                    width: 15.0,
+                    height: 15.0,
+                    color: Colors.grey.shade300,
+                    child: Icon(Icons.clear, size: 10.0,),
+                  ),
+                ),
+                onPanUpdate: (DragUpdateDetails details) {
+                  double _width = width + details.delta.dx;
+                  double _height = height + details.delta.dx;
+                  _width > 10 && _height > 10 ? setState(() {
+                    width += details.delta.dx;
+                    height += details.delta.dx;
+                  }) : setState(() {});
+                },),
+            ),
           ),
         ],
       ),
