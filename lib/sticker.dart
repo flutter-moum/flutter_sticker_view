@@ -40,35 +40,38 @@ class _StickerItemState extends State<StickerItem> {
       left: x,
       child: Stack(
         children: <Widget>[
-          Positioned(
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.blueAccent),
-              ),
-              padding: EdgeInsets.all(10.0),
-              child: GestureDetector(
-                child: Container(width: width, height: height, child: child),
-                onPanUpdate: (DragUpdateDetails details) {
-                  setState(() {
-                    x += details.delta.dx;
-                    y += details.delta.dy;
-                  });
-                },
-              ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.blueAccent),
+            ),
+            padding: EdgeInsets.all(10.0),
+            child: GestureDetector(
+              child: Container(width: width, height: height, child: child),
+              onPanUpdate: (DragUpdateDetails details) {
+                setState(() {
+                  x += details.delta.dx;
+                  y += details.delta.dy;
+                });
+              },
             ),
           ),
-          Container(
-            height: 10.0,
-            width: 10.0,
-            color: Colors.black,
-            child: GestureDetector(onPanUpdate: (DragUpdateDetails details) {
-              double _width = width + details.delta.dx;
-              double _height = height + details.delta.dx;
-              _width > 10 && _height > 10 ? setState(() {
-                width += details.delta.dx;
-                height += details.delta.dx;
-              }) : setState(() {});
-            }),
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                height: 10.0,
+                width: 10.0,
+                color: Colors.black,
+                child: GestureDetector(onPanUpdate: (DragUpdateDetails details) {
+                  double _width = width + details.delta.dx;
+                  double _height = height + details.delta.dx;
+                  _width > 10 && _height > 10 ? setState(() {
+                    width += details.delta.dx;
+                    height += details.delta.dx;
+                  }) : setState(() {});
+                }),
+              ),
+            ),
           ),
         ],
       ),
