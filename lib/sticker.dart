@@ -42,7 +42,7 @@ class _StickerItemState extends State<StickerItem> {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blueAccent),
+              border: Border.all(color: Colors.grey.shade300),
             ),
             padding: EdgeInsets.all(10.0),
             margin: EdgeInsets.all(5.0),
@@ -62,9 +62,9 @@ class _StickerItemState extends State<StickerItem> {
               child: GestureDetector(
                 child: ClipOval(
                   child: Container(
-                    width: 15.0,
-                    height: 15.0,
-                    color: Colors.grey.shade300,
+                    width: 13.0,
+                    height: 13.0,
+                    color: Colors.grey.shade100,
                     child: Icon(Icons.code, size: 10.0,),
                   ),
                 ),
@@ -83,10 +83,10 @@ class _StickerItemState extends State<StickerItem> {
               child: GestureDetector(
                 child: ClipOval(
                   child: Container(
-                    width: 15.0,
-                    height: 15.0,
-                    color: Colors.grey.shade300,
-                    child: Icon(Icons.clear, size: 10.0,),
+                    width: 13.0,
+                    height: 13.0,
+                    color: Colors.black,
+                    child: Icon(Icons.clear, size: 10.0, color: Colors.white,),
                   ),
                 ),
                 onPanUpdate: (DragUpdateDetails details) {
