@@ -7,7 +7,14 @@ class StickerBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: children);
+    return Stack(
+      children: <Widget>[
+        Stack(
+          children: children,
+        ),
+
+      ],
+    );
   }
 }
 
@@ -104,3 +111,32 @@ class _StickerItemState extends State<StickerItem> {
     );
   }
 }
+
+class StickerMenu extends StatefulWidget {
+  @override
+  _StickerMenuState createState() => _StickerMenuState();
+}
+
+class _StickerMenuState extends State<StickerMenu> {
+  @override
+  Widget build(BuildContext context) {
+    return Positioned.fill(
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 100.0,
+              color: Colors.red,
+            ),
+            Container(
+              height: 100.0,
+              color: Colors.orange,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
