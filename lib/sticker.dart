@@ -2,18 +2,26 @@ import 'package:flutter/material.dart';
 
 class StickerBoard extends StatelessWidget {
   final List<Widget> children;
+  final List<Widget> temp = [];
 
   StickerBoard({this.children});
 
   @override
   Widget build(BuildContext context) {
+    temp.addAll(children);
+    temp.add(
+        Positioned.fill(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              color: Colors.red,
+              height: 100.0,
+            ),
+          ),
+        )
+    );
     return Stack(
-      children: <Widget>[
-        Stack(
-          children: children,
-        ),
-
-      ],
+      children: this.temp,
     );
   }
 }
