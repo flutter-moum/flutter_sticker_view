@@ -2,26 +2,16 @@ import 'package:flutter/material.dart';
 
 class StickerBoard extends StatelessWidget {
   final List<Widget> children;
-  final List<Widget> temp = [];
+  final List<Widget> board = [];
 
   StickerBoard({this.children});
 
   @override
   Widget build(BuildContext context) {
-    temp.addAll(children);
-    temp.add(
-        Positioned.fill(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              color: Colors.red,
-              height: 100.0,
-            ),
-          ),
-        )
-    );
+    board.addAll(children);
+    board.add(StickerMenu());
     return Stack(
-      children: this.temp,
+      children: this.board,
     );
   }
 }
@@ -131,17 +121,31 @@ class _StickerMenuState extends State<StickerMenu> {
     return Positioned.fill(
       child: Align(
         alignment: Alignment.bottomCenter,
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 100.0,
-              color: Colors.red,
-            ),
-            Container(
-              height: 100.0,
-              color: Colors.orange,
-            ),
-          ],
+        child: Container(
+          color: Colors.white12,
+          height: 120.0,
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      child: Image.asset('assets/sticker/school.png'),
+                      padding: EdgeInsets.all(10.0),
+                    ),
+                    Padding(
+                      child: Image.asset('assets/sticker/apple.png'),
+                      padding: EdgeInsets.all(10.0),
+                    ),
+                    Padding(
+                      child: Image.asset('assets/sticker/bulb.png'),
+                      padding: EdgeInsets.all(10.0),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
