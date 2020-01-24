@@ -70,7 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: StickerBoard(
-          children: stickers
+        [Image.asset('assets/sticker/school.png'), Image.asset('assets/sticker/bulb.png'), Image.asset('assets/sticker/apple.png')],
+        stickersOnBoard: stickers,
       ),
 
       floatingActionButton: FloatingActionButton(

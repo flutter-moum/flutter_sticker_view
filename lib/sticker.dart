@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
 class StickerBoard extends StatelessWidget {
-  final List<Widget> children;
-  final List<Widget> board = [];
+  final List<Widget> stickerList;
+  final List<Widget> stickersOnBoard;
 
-  StickerBoard({this.children});
+  StickerBoard(this.stickerList, {this.stickersOnBoard});
 
   @override
   Widget build(BuildContext context) {
-    board.addAll(children);
-    board.add(StickerMenu());
     return Stack(
-      children: this.board,
+      children: [StickerMenu(stickerList)],
     );
   }
 }
@@ -110,12 +108,9 @@ class _StickerItemState extends State<StickerItem> {
   }
 }
 
-class StickerMenu extends StatefulWidget {
-  @override
-  _StickerMenuState createState() => _StickerMenuState();
-}
-
-class _StickerMenuState extends State<StickerMenu> {
+class StickerMenu extends StatelessWidget {
+  StickerMenu(this.stickerList);
+  final List<Widget> stickerList;
   @override
   Widget build(BuildContext context) {
     return Positioned.fill(
@@ -128,20 +123,7 @@ class _StickerMenuState extends State<StickerMenu> {
             children: <Widget>[
               Expanded(
                 child: Row(
-                  children: <Widget>[
-                    Padding(
-                      child: Image.asset('assets/sticker/school.png'),
-                      padding: EdgeInsets.all(10.0),
-                    ),
-                    Padding(
-                      child: Image.asset('assets/sticker/apple.png'),
-                      padding: EdgeInsets.all(10.0),
-                    ),
-                    Padding(
-                      child: Image.asset('assets/sticker/bulb.png'),
-                      padding: EdgeInsets.all(10.0),
-                    ),
-                  ],
+                  children: stickerList.map((_child) => Padding(padding: EdgeInsets.all(30.0), child: _child,)).toList(),
                 ),
               ),
             ],
