@@ -71,7 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: StickerBoard(
         [Image.asset('assets/sticker/school.png'), Image.asset('assets/sticker/bulb.png'), Image.asset('assets/sticker/apple.png')],
-        stickersOnBoard: stickers,
       ),
 
       floatingActionButton: FloatingActionButton(

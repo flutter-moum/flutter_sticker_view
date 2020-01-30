@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
+List<Widget> stickersOnBoard = [];
+
 class StickerBoard extends StatelessWidget {
   final List<Widget> stickerList;
-  final List<Widget> stickersOnBoard;
 
-  StickerBoard(this.stickerList, {this.stickersOnBoard});
+  StickerBoard(this.stickerList) {
+    stickersOnBoard.add(StickerMenu(stickerList));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [StickerMenu(stickerList)],
+      children: stickersOnBoard,
     );
   }
 }
@@ -108,9 +111,15 @@ class _StickerItemState extends State<StickerItem> {
   }
 }
 
-class StickerMenu extends StatelessWidget {
+class StickerMenu extends StatefulWidget {
   StickerMenu(this.stickerList);
   final List<Widget> stickerList;
+
+  @override
+  _StickerMenuState createState() => _StickerMenuState();
+}
+
+class _StickerMenuState extends State<StickerMenu> {
   @override
   Widget build(BuildContext context) {
     return Positioned.fill(
@@ -123,7 +132,9 @@ class StickerMenu extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: Row(
-                  children: stickerList.map((_child) => Padding(padding: EdgeInsets.all(30.0), child: _child,)).toList(),
+                  children: widget.stickerList.map((_child) => GestureDetector(child: Padding(padding: EdgeInsets.all(30.0), child: _child,), onTap: (){ setState(() {
+                    stickersOnBoard.insert(0, StickerItem(child: _child));
+                  });},)).toList(),
                 ),
               ),
             ],
